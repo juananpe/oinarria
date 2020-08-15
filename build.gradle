@@ -16,11 +16,11 @@ plugins {
     id 'org.openjfx.javafxplugin' version '0.0.8'
 }
 
-javafx {
-
-    modules = ['javafx.controls', 'javafx.fxml']
-    version = '11.0.2'
-}
+//javafx {
+//
+//    modules = []
+//    version = '11.0.2'
+//}
 
 repositories {
     // Use jcenter for resolving your dependencies.
@@ -32,6 +32,10 @@ dependencies {
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
+
+    implementation 'de.jensd:fontawesomefx-fontawesome:4.7.0-11', {
+        exclude group: 'org.openjfx'
+    }
 
 }
 
