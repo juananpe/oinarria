@@ -70,9 +70,8 @@ jlink {
 
     options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
     launcher {
-        name = 'helloFX'
+        name = 'helloFXML'
     }
-    forceMerge('fontawesomefx-fontawesome')
 
     jpackage {
         if (org.gradle.internal.os.OperatingSystem.current().windows) {
