@@ -93,44 +93,6 @@
       </VBox>
       <StackPane layoutX="274.0" layoutY="208.0">
          <children>
-            <GridPane fx:id="pnStudents" prefHeight="358.0" prefWidth="569.0" style="-fx-background-color: #fff;">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints maxHeight="100.0" minHeight="9.0" prefHeight="44.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="326.0" minHeight="10.0" prefHeight="314.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-               <children>
-                  <TableView prefHeight="200.0" prefWidth="200.0" stylesheets="@../css/fullpackstyling.css" GridPane.rowIndex="1">
-                     <columns>
-                        <TableColumn prefWidth="75.0" text="ID" />
-                        <TableColumn prefWidth="145.0" text="FirstName" />
-                        <TableColumn prefWidth="139.0" text="LastName" />
-                        <TableColumn prefWidth="75.0" text="Created At" />
-                     </columns>
-                     <columnResizePolicy>
-                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                     </columnResizePolicy>
-                  </TableView>
-                  <HBox alignment="CENTER_LEFT" prefHeight="43.0" prefWidth="569.0" spacing="10.0">
-                     <children>
-                        <FontAwesomeIconView fill="#3f2b63" glyphName="SEARCH" size="15">
-                           <HBox.margin>
-                              <Insets left="5.0" />
-                           </HBox.margin>
-                        </FontAwesomeIconView>
-                        <TextField prefHeight="27.0" prefWidth="383.0" style="-fx-border-color: #3f2b63;" />
-                        <ComboBox prefWidth="150.0" style="-fx-border-color: #3f2b63; -fx-background-color: #fff;" />
-                        <Button graphicTextGap="10.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="180.0" text="Add Students" textFill="#fcfafa">
-                           <graphic>
-                              <FontAwesomeIconView fill="#fcfcfc" glyphName="PLUS" size="15" />
-                           </graphic>
-                        </Button>
-                     </children>
-                  </HBox>
-               </children>
-            </GridPane>
             <GridPane fx:id="pnTeachers" alignment="CENTER_LEFT" prefHeight="358.0" prefWidth="569.0" style="-fx-background-color: #fff;">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -193,6 +155,44 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
+               </children>
+            </GridPane>
+            <GridPane fx:id="pnStudents" prefHeight="358.0" prefWidth="569.0" style="-fx-background-color: #fff;">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="100.0" minHeight="9.0" prefHeight="44.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="326.0" minHeight="10.0" prefHeight="314.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <TableView prefHeight="200.0" prefWidth="200.0" stylesheets="@../css/fullpackstyling.css" GridPane.rowIndex="1">
+                     <columns>
+                        <TableColumn prefWidth="75.0" text="ID" />
+                        <TableColumn prefWidth="145.0" text="FirstName" />
+                        <TableColumn prefWidth="139.0" text="LastName" />
+                        <TableColumn prefWidth="75.0" text="Created At" />
+                     </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+                  <HBox alignment="CENTER_LEFT" prefHeight="43.0" prefWidth="569.0" spacing="10.0">
+                     <children>
+                        <FontAwesomeIconView fill="#3f2b63" glyphName="SEARCH" size="15">
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </FontAwesomeIconView>
+                        <TextField prefHeight="27.0" prefWidth="383.0" style="-fx-border-color: #3f2b63;" />
+                        <ComboBox prefWidth="150.0" style="-fx-border-color: #3f2b63; -fx-background-color: #fff;" />
+                        <Button graphicTextGap="10.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="180.0" text="Add Students" textFill="#fcfafa">
+                           <graphic>
+                              <FontAwesomeIconView fill="#fcfcfc" glyphName="PLUS" size="15" />
+                           </graphic>
+                        </Button>
+                     </children>
+                  </HBox>
                </children>
             </GridPane>
          </children>
