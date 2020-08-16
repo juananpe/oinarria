@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class Main extends Application {
 
@@ -12,8 +13,9 @@ public class Main extends Application {
   public void start(Stage primaryStage) throws Exception{
 
     Parent root = FXMLLoader.load(getClass().getResource("/fxml/sample.fxml"));
-    primaryStage.setTitle("Hello World");
-    primaryStage.setScene(new Scene(root, 846, 566));
+    primaryStage.setTitle("ISAD Dashboard");
+    primaryStage.initStyle(StageStyle.UNDECORATED);
+    primaryStage.setScene(new Scene(root));
     primaryStage.show();
   }
 

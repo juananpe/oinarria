@@ -47,7 +47,10 @@ dependencies {
 mainClassName = "$moduleName/ehu.isad.Main"
 
 
-def newArgs = [ '--add-exports','java.desktop/com.apple.eawt=ALL-UNNAMED',]
+
+// See: https://stackoverflow.com/questions/58196536/why-am-i-receiving-a-javafx-fxml-loadexception-when-loading-my-fxml-file
+def newArgs = [ '--add-exports','java.desktop/com.apple.eawt=ALL-UNNAMED',
+                '--add-opens', 'javafx.graphics/javafx.css=de.jensd.fx.fontawesomefx.commons',]
 
 run {
     inputs.property('moduleName', moduleName)
