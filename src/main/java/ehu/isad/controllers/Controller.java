@@ -40,7 +40,7 @@ public class Controller implements Initializable {
     private GridPane pnTeachers;
 
     @FXML
-    private Label pnFees;
+    private GridPane pnFees;
 
     @FXML
     private GridPane pnUsers;

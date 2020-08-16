@@ -109,7 +109,7 @@
                   </Label>
                </children>
             </GridPane>
-            <GridPane alignment="CENTER_LEFT" prefHeight="358.0" prefWidth="569.0" style="-fx-background-color: #fff;">
+            <GridPane fx:id="pnFees" alignment="CENTER_LEFT" prefHeight="358.0" prefWidth="569.0" style="-fx-background-color: #fff;">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                </columnConstraints>
@@ -118,7 +118,7 @@
                   <RowConstraints maxHeight="326.0" minHeight="10.0" prefHeight="314.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Label fx:id="pnFees" alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="579.0" text="Tasak" textFill="#7156dd" GridPane.rowIndex="1">
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="26.0" prefWidth="579.0" text="Tasak" textFill="#2b633f" GridPane.rowIndex="1">
                      <font>
                         <Font size="20.0" />
                      </font>
