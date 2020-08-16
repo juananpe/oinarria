@@ -142,6 +142,6 @@
             </Label>
          </children>
       </Pane>
-      <FontAwesomeIconView fill="#797777" glyphName="CLOSE" layoutX="826.0" layoutY="19.0" size="16" />
+      <FontAwesomeIconView fx:id="btnClose" fill="#797777" glyphName="CLOSE" layoutX="826.0" layoutY="19.0" onMouseClicked="#handleClose" size="16" />
    </children>
 </AnchorPane>

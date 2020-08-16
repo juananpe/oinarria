@@ -1,5 +1,6 @@
 package ehu.isad.controllers;
 
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -7,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -43,6 +45,9 @@ public class Controller implements Initializable {
     @FXML
     private Label lblStatus;
 
+    @FXML
+    private FontAwesomeIconView btnClose;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -70,6 +75,13 @@ public class Controller implements Initializable {
             lblStatusMin.setText("/home/settings");
             lblStatus.setText("Settings");
             pnlStatus.setBackground(new Background(new BackgroundFill(Color.rgb(42, 28, 66), CornerRadii.EMPTY, Insets.EMPTY)));
+        }
+    }
+
+    @FXML
+    private void handleClose(MouseEvent event){
+        if (event.getSource() == btnClose){
+            System.exit(0);
         }
     }
 }
