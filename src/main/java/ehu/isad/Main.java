@@ -18,7 +18,7 @@ public class Main extends Application {
   @Override
   public void start(Stage primaryStage) throws Exception{
 
-    Parent root = FXMLLoader.load(getClass().getResource("/fxml/sample.fxml"));
+    Parent root = FXMLLoader.load(getClass().getResource("/fxml/azterketa.fxml"));
 
     //grab your root here
     root.setOnMousePressed(new EventHandler<MouseEvent>() {
