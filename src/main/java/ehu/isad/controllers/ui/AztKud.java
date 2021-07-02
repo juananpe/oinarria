@@ -5,18 +5,20 @@ import java.io.InputStream;
 import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import ehu.isad.controllers.db.URLKud;
+import ehu.isad.model.Repo;
+import ehu.isad.utils.Utils;
 import javafx.event.EventHandler;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
+import javafx.util.converter.IntegerStringConverter;
 import org.apache.commons.codec.binary.Hex;
 
 
-
-import ehu.isad.model.ServerCMSModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -35,16 +37,18 @@ public class AztKud implements Initializable
     private URL location;
 
     @FXML
-    private TableView<ServerCMSModel> taula;
+    private TableView<Repo> taula;
 
     @FXML
-    private TableColumn<ServerCMSModel, String> url;
+    private TableColumn<Repo, String> full_name;
 
     @FXML
-    private TableColumn<ServerCMSModel, String> md5;
+    private TableColumn<Repo, String> license;
 
     @FXML
-    private TableColumn<ServerCMSModel, String> version;
+    private TableColumn<Repo, String> description;
+    @FXML
+    private TableColumn<Repo, Integer> open_issues;
 
     @FXML
     private Button checkBotoia;
@@ -56,42 +60,27 @@ public class AztKud implements Initializable
     private TextField testua;
 
     @FXML
-    void onCheckClick(ActionEvent event) throws NoSuchAlgorithmException, IOException {
-        URL url = new URL( testua.getText() + "/README");
-        InputStream is = url.openStream();
-        MessageDigest md = MessageDigest.getInstance("MD5");
-        String digest = getDigest(is, md, 2048);
-
-        addRow(testua.getText(), digest);
-
-       // System.out.println("MD5 Digest:" + digest);
-
+    void onCheckClick(ActionEvent event)  {
+        Repo repo = null;
+        try {
+            repo = Utils.readFromUrl(testua.getText());
+            addRow(repo);
+        } catch (IOException e) {
+            mezuak.setText(testua.getText() + " ez da aurkitu");
+        }
     }
 
-    void addRow(String url, String digest){
-        String version = URLKud.getInstance().getVersion(digest);
-        if (version.equals("")){
-            mezuak.setText("Ez da datubasean aurkitu");
+    void addRow(Repo repo){
+
+        boolean exists = URLKud.getInstance().getRepos(repo.full_name).size() > 0;
+        if (!exists) {
+            URLKud.getInstance().setVersion(repo);
+            websiteList.add(repo);
+            mezuak.setText("Datubasean txertatu da");
         } else {
             mezuak.setText("Datubasean zegoen");
         }
-        websiteList.add(new ServerCMSModel(url, digest, version));
     }
-
-    public static String getDigest(InputStream is, MessageDigest md, int byteArraySize)
-            throws IOException {
-
-        md.reset();
-        byte[] bytes = new byte[byteArraySize];
-        int numBytes;
-        while ((numBytes = is.read(bytes)) != -1) {
-            md.update(bytes, 0, numBytes);
-        }
-        byte[] digest = md.digest();
-        String result = new String(Hex.encodeHex(digest));
-        return result;
-    }
-
 
     @FXML
     private FontAwesomeIconView closeButton;
@@ -102,31 +91,33 @@ public class AztKud implements Initializable
     }
 
 
-    private ObservableList<ServerCMSModel> websiteList;
+    private ObservableList<Repo> websiteList;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        url.setCellValueFactory(new PropertyValueFactory<>("url"));
-        md5.setCellValueFactory(new PropertyValueFactory<>("md5"));
-        version.setCellValueFactory(new PropertyValueFactory<>("version"));
+        full_name.setCellValueFactory(new PropertyValueFactory<>("full_name"));
+        description.setCellValueFactory(new PropertyValueFactory<>("description"));
+        license.setCellValueFactory(new PropertyValueFactory<>("license"));
+        open_issues.setCellValueFactory(new PropertyValueFactory<>("open_issues"));
 
+        List<Repo> repos = URLKud.getInstance().getRepos("");
         websiteList = FXCollections.observableArrayList();
+        websiteList.addAll(repos);
 
+        open_issues.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
 
-        version.setCellFactory(TextFieldTableCell.forTableColumn());
+        open_issues.setOnEditCommit(
+                new EventHandler<TableColumn.CellEditEvent<Repo, Integer>>() {
+                    public void handle(TableColumn.CellEditEvent<Repo, Integer> t) {
 
-        version.setOnEditCommit(
-                new EventHandler<TableColumn.CellEditEvent<ServerCMSModel, String>>() {
-                    public void handle(TableColumn.CellEditEvent<ServerCMSModel, String> t) {
-
-                        ServerCMSModel model = ((ServerCMSModel) t.getTableView().getItems().get(
+                        Repo repo = ((Repo) t.getTableView().getItems().get(
                                 t.getTablePosition().getRow())
                         );
 
-                        mezuak.setText("md5 eta bertsio berria datubasean sartu dira");
-                        URLKud.getInstance().setVersion(model.getMd5(), t.getNewValue());
-                        model.setVersion(t.getNewValue());
+                        mezuak.setText("Issue kopurua datubasean eguneratu da");
+                        URLKud.getInstance().setVersion(repo);
+                        // model.setVersion(t.getNewValue());
                     }
                 }
         );
